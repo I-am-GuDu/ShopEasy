@@ -1324,6 +1324,26 @@ footer::before {
         padding: 0 15px;
     }
 
+    /* Mobile Dropdown Animation */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .mobile-dropdown-overlay {
+        backdrop-filter: blur(5px) !important;
+    }
+
+    .mobile-dropdown-menu {
+        animation: slideDown 0.3s ease-out !important;
+    }
+
     /* Mobile Header Optimization - AMAZON-STYLE LAYOUT */
     
     /* HIDE TOP BAR COMPLETELY ON MOBILE */
@@ -1440,12 +1460,18 @@ footer::before {
         font-weight: 600 !important;
     }
 
-    /* Mobile Navigation - HORIZONTAL SINGLE LINE */
+    /* Mobile Navigation - HORIZONTAL SINGLE LINE - FIXED SCROLLING */
     nav {
         overflow-x: auto !important;
         overflow-y: hidden !important;
         -webkit-overflow-scrolling: touch !important;
         position: relative !important;
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE/Edge */
+    }
+
+    nav::-webkit-scrollbar {
+        display: none !important; /* Chrome/Safari */
     }
 
     nav::before {
@@ -1461,20 +1487,34 @@ footer::before {
         -webkit-overflow-scrolling: touch !important;
         justify-content: flex-start !important;
         display: flex !important;
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE/Edge */
+        height: auto !important;
+        min-height: 44px !important;
+        max-height: 44px !important;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none !important; /* Chrome/Safari */
     }
 
     .nav-links li {
         flex-shrink: 0 !important;
         display: inline-block !important;
         position: relative !important;
+        height: 44px !important;
+        line-height: 44px !important;
     }
 
     .nav-links a {
-        padding: 10px 12px !important;
+        padding: 0 12px !important;
         font-size: 13px !important;
         border-bottom: none !important;
         white-space: nowrap !important;
-        display: inline-block !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        height: 44px !important;
+        line-height: 1 !important;
         animation: none !important;
         transform: none !important;
     }

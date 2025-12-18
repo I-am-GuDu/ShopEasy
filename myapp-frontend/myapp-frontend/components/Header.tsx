@@ -100,29 +100,43 @@ export default function Header() {
       {/* Mobile Dropdown - Rendered outside header for proper z-index */}
       {isMobile && isDropdownOpen && (
         <div 
-          className="dropdown show"
+          className="mobile-dropdown-overlay"
           style={{
             display: 'flex',
             position: 'fixed',
-            top: '60px',
-            left: '10px',
-            right: '10px',
+            top: '0',
+            left: '0',
+            right: '0',
+            bottom: '0',
             zIndex: 999999,
-            backgroundColor: 'red',
-            minWidth: 'auto',
-            maxWidth: 'calc(100vw - 20px)',
-            flexDirection: 'column',
-            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.5)',
-            borderRadius: '8px',
-            color: 'white',
-            padding: '10px'
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+            paddingTop: '80px'
           }}
+          onClick={() => setIsDropdownOpen(false)}
         >
-          <Link href="/electronics" onClick={() => setIsDropdownOpen(false)} style={{padding: '12px 15px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee'}}>Electronics</Link>
-          <Link href="/clothing" onClick={() => setIsDropdownOpen(false)} style={{padding: '12px 15px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee'}}>Clothing</Link>
-          <Link href="/kitchen" onClick={() => setIsDropdownOpen(false)} style={{padding: '12px 15px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee'}}>Home & Kitchen</Link>
-          <Link href="/beauty" onClick={() => setIsDropdownOpen(false)} style={{padding: '12px 15px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee'}}>Beauty</Link>
-          <Link href="/sports" onClick={() => setIsDropdownOpen(false)} style={{padding: '12px 15px', color: '#2d3436', textDecoration: 'none'}}>Sports</Link>
+          <div 
+            className="mobile-dropdown-menu"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              backgroundColor: 'white',
+              minWidth: '280px',
+              maxWidth: '90vw',
+              borderRadius: '12px',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+              overflow: 'hidden',
+              animation: 'slideDown 0.3s ease-out'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Link href="/electronics" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee', fontSize: '16px', fontWeight: '500'}}>📱 Electronics</Link>
+            <Link href="/clothing" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee', fontSize: '16px', fontWeight: '500'}}>👕 Clothing</Link>
+            <Link href="/kitchen" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee', fontSize: '16px', fontWeight: '500'}}>🏠 Home & Kitchen</Link>
+            <Link href="/beauty" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee', fontSize: '16px', fontWeight: '500'}}>💄 Beauty</Link>
+            <Link href="/sports" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', fontSize: '16px', fontWeight: '500'}}>⚽ Sports</Link>
+          </div>
         </div>
       )}
 

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ShopEasy</title>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div>Welcome to ShopEasy - Your Online Shopping Destination!</div>
+                <div>
+                    <a href="#" class="contact-link"><i class="fas fa-phone"></i> +1 234 567 890</a>
+                    <a href="#" class="contact-link"><i class="fas fa-envelope"></i> support@shopeasy.com</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container main-header">
+            <a href="{% url 'home' %}" class="logo">
+                <i class="fas fa-cube"></i>
+                <span>Shop</span>Easy
+            </a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="header-icons">
+                <a href="#" class="icon-item">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="#" class="icon-item">
+                    <i class="fas fa-heart"></i>
+                    <div class="badge" id="wishlist-count">3</div>
+                </a>
+                <a href="#" class="icon-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="badge" id="cart-count">5</div>
+                </a>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li>
+                        <a href="#">Categories <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown">
+                            <a href="{% url 'electronics' %}">Electronics</a>
+                            <a href="{% url 'clothing' %}">Clothing</a>
+                            <a href="{% url 'kitchen' %}">Home & Kitchen</a>
+                            <a href="{% url 'beauty' %}">Beauty</a>
+                            <a href="{% url 'sports' %}">Sports</a>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'deals' %}">Deals</a></li>
+                    <li><a href="{% url 'about' %}" class="active">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container about-hero-content">
+            <h1>About ShopEasy</h1>
+            <p>Your trusted partner for online shopping since 2015</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="container">
+        <div class="about-content">
+            <h2>Our Story</h2>
+            <p>Founded in 2015, ShopEasy began with a simple mission: to make online shopping accessible, affordable, and enjoyable for everyone. What started as a small team with big dreams has grown into one of the leading e-commerce platforms in the region.</p>
+            
+            <p>We believe that shopping should be more than just a transaction - it should be an experience. That's why we've curated a selection of high-quality products from trusted brands, all at competitive prices.</p>
+            
+            <h2>Our Mission</h2>
+            <p>Our mission is to empower consumers with choice, convenience, and confidence. We're committed to providing:</p>
+            <ul>
+                <li>Exceptional customer service</li>
+                <li>Fast and reliable delivery</li>
+                <li>Competitive pricing</li>
+                <li>Authentic products from trusted brands</li>
+                <li>A seamless shopping experience</li>
+            </ul>
+            
+            <h2>Why Choose ShopEasy?</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-shipping-fast feature-icon"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your orders delivered within 2-3 business days</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-undo feature-icon"></i>
+                    <h3>Easy Returns</h3>
+                    <p>30-day return policy with no questions asked</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3>Secure Payments</h3>
+                    <p>Multiple secure payment options available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Leadership Team</h2>
+            </div>
+            
+            <div class="team">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/media/photos/about_pic1.jpg" alt="CEO">
+                    </div>
+                    <div class="member-info">
+                        <h3>John Smith</h3>
+                        <div class="position">Chief Executive Officer</div>
+                        <p>15+ years of experience in e-commerce and retail</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="CTO">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Johnson</h3>
+                        <div class="position">Chief Technology Officer</div>
+                        <p>Tech visionary with expertise in scalable platforms</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="CMO">
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <div class="position">Chief Marketing Officer</div>
+                        <p>Digital marketing expert with global brand experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ShopEasy</h3>
+                    <p>Your one-stop destination for all your shopping needs. Quality products at affordable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'deals' %}">Deals</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'electronics' %}">Electronics</a></li>
+                        <li><a href="{% url 'clothing' %}">Clothing</a></li>
+                        <li><a href="{% url 'kitchen' %}">Home & Kitchen</a></li>
+                        <li><a href="{% url 'beauty' %}">Beauty</a></li>
+                        <li><a href="{% url 'sports' %}">Sports</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Shopping Street, Retail City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@shopeasy.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 ShopEasy. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/about.js' %}"></script>
+</body>
+</html>

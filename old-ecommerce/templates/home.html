@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div>Welcome to ShopEasy - Your Online Shopping Destination!</div>
+                <div>
+                    <a href="#" class="contact-link"><i class="fas fa-phone"></i> +1 234 567 890</a>
+                    <a href="#" class="contact-link"><i class="fas fa-envelope"></i> support@shopeasy.com</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container main-header">
+            <a href="{% url 'home' %}" class="logo">
+                <i class="fas fa-cube"></i>
+                <span>Shop</span>Easy
+            </a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="header-icons">
+                <a href="#" class="icon-item">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="#" class="icon-item">
+                    <i class="fas fa-heart"></i>
+                    <div class="badge" id="wishlist-count">3</div>
+                </a>
+                <a href="#" class="icon-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="badge" id="cart-count">5</div>
+                </a>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}" class="active">Home</a></li>
+                    <li>
+                        <a href="#">Categories <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown">
+                            <a href="{% url 'electronics' %}">Electronics</a>
+                            <a href="{% url 'clothing' %}">Clothing</a>
+                            <a href="{% url 'kitchen' %}">Home & Kitchen</a>
+                            <a href="{% url 'beauty' %}">Beauty</a>
+                            <a href="{% url 'sports' %}">Sports</a>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'deals' %}">Deals</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Summer Sale is Live!</h1>
+            <p>Up to 70% off on all products. Limited time offer. Shop now!</p>
+            <a href="{% url 'deals' %}" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Shop by Category</h2>
+        </div>
+        
+        <div class="categories">
+            <a href="{% url 'electronics' %}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>Electronics</h3>
+                <p>Latest gadgets and devices</p>
+            </a>
+            
+            <a href="{% url 'clothing' %}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3>Clothing</h3>
+                <p>Fashion for men and women</p>
+            </a>
+            
+            <a href="{% url 'kitchen' %}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-blender"></i>
+                </div>
+                <h3>Home & Kitchen</h3>
+                <p>Everything for your home</p>
+            </a>
+            
+            <a href="{% url 'beauty' %}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h3>Beauty</h3>
+                <p>Skincare and cosmetics</p>
+            </a>
+            
+            <a href="{% url 'sports' %}" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-football-ball"></i>
+                </div>
+                <h3>Sports</h3>
+                <p>Equipment and accessories</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Featured Products</h2>
+        </div>
+        
+        <div class="products">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Smart Watch">
+                </div>
+                <div class="product-info">
+                    <h3>Smart Watch Series 5</h3>
+                    <div class="product-price">
+                        $199.99 <span class="old-price">$249.99</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Wireless Headphones">
+                </div>
+                <div class="product-info">
+                    <h3>Wireless Headphones</h3>
+                    <div class="product-price">
+                        $129.99 <span class="old-price">$159.99</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Smartphone">
+                </div>
+                <div class="product-info">
+                    <h3>Latest Smartphone</h3>
+                    <div class="product-price">
+                        $699.99 <span class="old-price">$799.99</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1585155770447-2f66e2a397b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Camera">
+                </div>
+                <div class="product-info">
+                    <h3>Professional Camera</h3>
+                    <div class="product-price">
+                        $899.99 <span class="old-price">$999.99</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section class="deals">
+        <div class="container deals-content">
+            <h2>Flash Sale - Limited Time Offer!</h2>
+            <p>Don't miss out on our biggest sale of the year. Huge discounts on all products!</p>
+            
+            <div class="timer">
+                <div class="timer-box">
+                    <div class="timer-value" id="days">02</div>
+                    <div class="timer-label">Days</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="hours">18</div>
+                    <div class="timer-label">Hours</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="minutes">45</div>
+                    <div class="timer-label">Minutes</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="seconds">30</div>
+                    <div class="timer-label">Seconds</div>
+                </div>
+            </div>
+            
+            <a href="{% url 'deals' %}" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ShopEasy</h3>
+                    <p>Your one-stop destination for all your shopping needs. Quality products at affordable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'deals' %}">Deals</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'electronics' %}">Electronics</a></li>
+                        <li><a href="{% url 'clothing' %}">Clothing</a></li>
+                        <li><a href="{% url 'kitchen' %}">Home & Kitchen</a></li>
+                        <li><a href="{% url 'beauty' %}">Beauty</a></li>
+                        <li><a href="{% url 'sports' %}">Sports</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Shopping Street, Retail City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@shopeasy.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 ShopEasy. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/mobile-enhancements.js' %}"></script>
+</body>
+</html>

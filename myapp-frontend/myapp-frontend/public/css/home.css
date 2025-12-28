@@ -1344,6 +1344,21 @@ footer::before {
         animation: slideDown 0.3s ease-out !important;
     }
 
+    .mobile-dropdown-menu a {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1) !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -khtml-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        touch-action: manipulation !important;
+    }
+
+    .mobile-dropdown-menu a:active {
+        background-color: #f0f0f0 !important;
+    }
+
     /* Mobile Header Optimization - AMAZON-STYLE LAYOUT */
     
     /* HIDE TOP BAR COMPLETELY ON MOBILE */

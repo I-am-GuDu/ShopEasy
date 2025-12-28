@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 
 /**
@@ -22,6 +22,7 @@ import { useState, useEffect, useRef } from 'react';
  */
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -58,7 +59,18 @@ export default function Header() {
   const toggleDropdown = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     e.preventDefault();
     e.stopPropagation();
+    console.log('🔄 Toggling dropdown, current state:', isDropdownOpen);
     setIsDropdownOpen((prev) => !prev);
+  };
+
+  const handleLinkClick = (href: string, e?: React.MouseEvent): void => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    console.log('🔗 Link clicked:', href);
+    setIsDropdownOpen(false);
+    router.push(href);
   };
 
   const handleMouseEnter = (): void => {
@@ -76,21 +88,43 @@ export default function Header() {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: Event): void => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false);
+      const target = event.target as Node;
+      
+      // Don't close if clicking on dropdown content
+      if (target && (target as Element).closest('.mobile-dropdown-menu')) {
+        return;
       }
+      
+      // Don't close if clicking on desktop dropdown
+      if (dropdownRef.current && dropdownRef.current.contains(target)) {
+        return;
+      }
+      
+      setIsDropdownOpen(false);
     };
 
     if (isDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchstart', handleClickOutside);
+      // Only use mousedown for desktop, avoid touchstart conflicts on mobile
+      if (!isMobile) {
+        document.addEventListener('mousedown', handleClickOutside);
+      } else {
+        // For mobile, use a delayed touchstart to avoid conflicts
+        const timeoutId = setTimeout(() => {
+          document.addEventListener('touchstart', handleClickOutside);
+        }, 100);
+        
+        return () => {
+          clearTimeout(timeoutId);
+          document.removeEventListener('touchstart', handleClickOutside);
+        };
+      }
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, [isDropdownOpen]);
+  }, [isDropdownOpen, isMobile]);
 
   // Debug: Log when component renders
   console.log('🔄 Header render - isMobile:', isMobile, 'isDropdownOpen:', isDropdownOpen);
@@ -114,7 +148,11 @@ export default function Header() {
             justifyContent: 'center',
             paddingTop: '80px'
           }}
-          onClick={() => setIsDropdownOpen(false)}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setIsDropdownOpen(false);
+            }
+          }}
         >
           <div 
             className="mobile-dropdown-menu"
@@ -129,13 +167,139 @@ export default function Header() {
               overflow: 'hidden',
               animation: 'slideDown 0.3s ease-out'
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log('🔄 Menu container clicked');
+            }}
           >
-            <Link href="/electronics" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee', fontSize: '16px', fontWeight: '500'}}>📱 Electronics</Link>
-            <Link href="/clothing" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee', fontSize: '16px', fontWeight: '500'}}>👕 Clothing</Link>
-            <Link href="/kitchen" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee', fontSize: '16px', fontWeight: '500'}}>🏠 Home & Kitchen</Link>
-            <Link href="/beauty" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', borderBottom: '1px solid #eee', fontSize: '16px', fontWeight: '500'}}>💄 Beauty</Link>
-            <Link href="/sports" onClick={() => setIsDropdownOpen(false)} style={{padding: '16px 20px', color: '#2d3436', textDecoration: 'none', fontSize: '16px', fontWeight: '500'}}>⚽ Sports</Link>
+            <button 
+              type="button"
+              onClick={(e) => {
+                console.log('🔥 Electronics button clicked!');
+                handleLinkClick('/electronics', e);
+              }}
+              onTouchEnd={(e) => {
+                console.log('👆 Electronics touch end - triggering navigation');
+                e.preventDefault();
+                handleLinkClick('/electronics', e);
+              }}
+              style={{
+                padding: '16px 20px', 
+                color: '#2d3436', 
+                borderBottom: '1px solid #eee', 
+                fontSize: '16px', 
+                fontWeight: '500',
+                display: 'block',
+                width: '100%',
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+                userSelect: 'none',
+                backgroundColor: 'transparent',
+                border: 'none',
+                textAlign: 'left'
+              }}
+            >
+              📱 Electronics
+            </button>
+            <button 
+              type="button"
+              onClick={(e) => handleLinkClick('/clothing', e)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                handleLinkClick('/clothing', e);
+              }}
+              style={{
+                padding: '16px 20px', 
+                color: '#2d3436', 
+                borderBottom: '1px solid #eee', 
+                fontSize: '16px', 
+                fontWeight: '500',
+                display: 'block',
+                width: '100%',
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+                userSelect: 'none',
+                backgroundColor: 'transparent',
+                border: 'none',
+                textAlign: 'left'
+              }}
+            >
+              👕 Clothing
+            </button>
+            <button 
+              type="button"
+              onClick={(e) => handleLinkClick('/kitchen', e)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                handleLinkClick('/kitchen', e);
+              }}
+              style={{
+                padding: '16px 20px', 
+                color: '#2d3436', 
+                borderBottom: '1px solid #eee', 
+                fontSize: '16px', 
+                fontWeight: '500',
+                display: 'block',
+                width: '100%',
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+                userSelect: 'none',
+                backgroundColor: 'transparent',
+                border: 'none',
+                textAlign: 'left'
+              }}
+            >
+              🏠 Home & Kitchen
+            </button>
+            <button 
+              type="button"
+              onClick={(e) => handleLinkClick('/beauty', e)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                handleLinkClick('/beauty', e);
+              }}
+              style={{
+                padding: '16px 20px', 
+                color: '#2d3436', 
+                borderBottom: '1px solid #eee', 
+                fontSize: '16px', 
+                fontWeight: '500',
+                display: 'block',
+                width: '100%',
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+                userSelect: 'none',
+                backgroundColor: 'transparent',
+                border: 'none',
+                textAlign: 'left'
+              }}
+            >
+              💄 Beauty
+            </button>
+            <button 
+              type="button"
+              onClick={(e) => handleLinkClick('/sports', e)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                handleLinkClick('/sports', e);
+              }}
+              style={{
+                padding: '16px 20px', 
+                color: '#2d3436', 
+                fontSize: '16px', 
+                fontWeight: '500',
+                display: 'block',
+                width: '100%',
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+                userSelect: 'none',
+                backgroundColor: 'transparent',
+                border: 'none',
+                textAlign: 'left'
+              }}
+            >
+              ⚽ Sports
+            </button>
           </div>
         </div>
       )}

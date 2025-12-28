@@ -33,7 +33,6 @@ export default function Header() {
     const checkMobile = () => {
       const width = window.innerWidth;
       const mobile = width <= 768;
-      console.log('📱 Window width:', width, '→ isMobile:', mobile);
       setIsMobile(mobile);
     };
     
@@ -59,7 +58,6 @@ export default function Header() {
   const toggleDropdown = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('🔄 Toggling dropdown, current state:', isDropdownOpen);
     setIsDropdownOpen((prev) => !prev);
   };
 
@@ -68,7 +66,6 @@ export default function Header() {
       e.preventDefault();
       e.stopPropagation();
     }
-    console.log('🔗 Link clicked:', href);
     setIsDropdownOpen(false);
     router.push(href);
   };
@@ -126,8 +123,7 @@ export default function Header() {
     };
   }, [isDropdownOpen, isMobile]);
 
-  // Debug: Log when component renders
-  console.log('🔄 Header render - isMobile:', isMobile, 'isDropdownOpen:', isDropdownOpen);
+
 
   return (
     <>
@@ -169,19 +165,16 @@ export default function Header() {
             }}
             onClick={(e) => {
               e.stopPropagation();
-              console.log('🔄 Menu container clicked');
             }}
           >
             <button 
               type="button"
               onClick={(e) => {
-                console.log('🔥 Electronics button clicked!');
                 handleLinkClick('/electronics', e);
               }}
               onTouchEnd={(e) => {
-                console.log('👆 Electronics touch end - triggering navigation');
                 e.preventDefault();
-                handleLinkClick('/electronics', e);
+                handleLinkClick('/electronics', );
               }}
               style={{
                 padding: '16px 20px', 
@@ -206,7 +199,7 @@ export default function Header() {
               onClick={(e) => handleLinkClick('/clothing', e)}
               onTouchEnd={(e) => {
                 e.preventDefault();
-                handleLinkClick('/clothing', e);
+                handleLinkClick('/clothing', );
               }}
               style={{
                 padding: '16px 20px', 
@@ -231,7 +224,7 @@ export default function Header() {
               onClick={(e) => handleLinkClick('/kitchen', e)}
               onTouchEnd={(e) => {
                 e.preventDefault();
-                handleLinkClick('/kitchen', e);
+                handleLinkClick('/kitchen', );
               }}
               style={{
                 padding: '16px 20px', 
@@ -256,7 +249,7 @@ export default function Header() {
               onClick={(e) => handleLinkClick('/beauty', e)}
               onTouchEnd={(e) => {
                 e.preventDefault();
-                handleLinkClick('/beauty', e);
+                handleLinkClick('/beauty', );
               }}
               style={{
                 padding: '16px 20px', 
@@ -281,7 +274,7 @@ export default function Header() {
               onClick={(e) => handleLinkClick('/sports', e)}
               onTouchEnd={(e) => {
                 e.preventDefault();
-                handleLinkClick('/sports', e);
+                handleLinkClick('/sports', );
               }}
               style={{
                 padding: '16px 20px', 
